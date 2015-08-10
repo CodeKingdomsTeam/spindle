@@ -1,0 +1,26 @@
+{
+	"name": "spindle",
+	"version": "0.0.0",
+	"description": "A library providing co-routine support to Javascript with optional translation from synchronous Javascript, with mutexes called executors",
+	"main": "source/spindle.js",
+	"dependencies": {
+		"lodash": "3.0.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/CodeKingdomsTeam/spindle"
+	},
+	"keywords": [
+		"cursor",
+		"query",
+		"chained",
+		"asynchronous",
+		"reactive"
+	],
+	"author": "Hugh Collins <thehugheth@gmail.com> (http://codekingdoms.com/)",
+	"license": "BSD-2-Clause",
+	"bugs": {
+		"url": "git://github.com/CodeKingdomsTeam/spindle/issues"
+	},
+	"homepage": "https://github.com/CodeKingdomsTeam/spindle"
+}
