@@ -9,6 +9,8 @@ module.exports = function( spindle ) {
 
 		method: function( fnOrString, schema ) {
 
+			'use strict';
+
 			var string;
 			var name = 'fn';
 

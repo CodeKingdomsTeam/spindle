@@ -1,10 +1,8 @@
 'use strict';
 
 var _ = require( 'lodash' );
-var requireDir = require( 'require-dir' );
 
 var defineLibrary = function( globalOptions ) {
-
 
 	var spindle = _.defaults( globalOptions || {}, {
 
@@ -19,19 +17,17 @@ var defineLibrary = function( globalOptions ) {
 
 	} );
 
-	var importLibrary = function( library ) {
-
-		library( spindle );
-
-	};
-
-	var importDirectories = [ 'api', 'classes', 'runtime', 'translation', 'utils' ];
-
-	_.each( importDirectories, function( value ) {
-
-		_.each( requireDir( './' + value ), importLibrary );
-
-	} );
+	require( './api/compare.js' )( spindle );
+	require( './api/wait.js' )( spindle );
+	require( './classes/Executor.js' )( spindle );
+	require( './classes/Thread.js' )( spindle );
+	require( './runtime/run.js' )( spindle );
+	require( './runtime/thread.js' )( spindle );
+	require( './translation/translator.js' )( spindle );
+	require( './translation/variableWalker.js' )( spindle );
+	require( './utils/basic.js' )( spindle );
+	require( './utils/method.js' )( spindle );
+	require( './utils/parse.js' )( spindle );
 
 	return spindle;
 

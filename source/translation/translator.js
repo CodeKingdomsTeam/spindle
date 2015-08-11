@@ -406,7 +406,7 @@ module.exports = function( spindle ) {
 
 		CallExpression: function( node, tabOffset ) {
 
-			var text = 'yield ';
+			var text = '( yield ';
 			text += walk( node.callee, tabOffset );
 			text += '( ';
 
@@ -417,7 +417,7 @@ module.exports = function( spindle ) {
 			} ).join( ', ' );
 
 			text += parameters;
-			text += ' )';
+			text += ' ) )';
 
 			return text;
 		},

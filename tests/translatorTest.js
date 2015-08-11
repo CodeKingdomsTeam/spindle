@@ -282,7 +282,7 @@ describe( 'Threads', function() {
 
 			var x = 0;
 
-			yield x( 5 );
+			( yield x( 5 ) );
 
 		} );
 
@@ -301,7 +301,7 @@ describe( 'Threads', function() {
 
 			var x = 0;
 
-			yield x.tread( 5 );
+			( yield x.tread( 5 ) );
 
 		} );
 
@@ -323,8 +323,8 @@ describe( 'Global api mappings', function() {
 		}, function*() {
 
 			var x = spindle.api.wait;
-			yield spindle.api.waitFor( 5 );
-			yield x( 5 );
+			( yield spindle.api.waitFor( 5 ) );
+			( yield x( 5 ) );
 
 		} );
 
@@ -353,8 +353,8 @@ describe( 'Global api mappings', function() {
 		}, function*() {
 
 			var x = spindle.api.wait;
-			yield spindle.api.waitFor( 5 );
-			yield x( 5 );
+			( yield spindle.api.waitFor( 5 ) );
+			( yield x( 5 ) );
 			( spindle.api.y = 3 );
 
 			spindle.thread( "test", function*( y ) {
@@ -407,8 +407,8 @@ describe( 'Global api mappings', function() {
 		}, function*() {
 
 			var x = spindle.api.wait;
-			yield spindle.api.waitFor( 5 );
-			yield x( 5 );
+			( yield spindle.api.waitFor( 5 ) );
+			( yield x( 5 ) );
 			( spindle.api.y = 3 );
 
 			var test = spindle.thread( "function", function*( y ) {
