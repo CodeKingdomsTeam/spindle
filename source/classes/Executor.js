@@ -6,15 +6,21 @@ module.exports = function( spindle ) {
 
 	spindle.Executor = function( name, extension ) {
 
-		this.name = name;
-		this.alive = true;
-		this.__threads = [];
-		this.__paused = [];
+		this.init( name );
 		_.extend( this, extension );
 
 	};
 
 	spindle.Executor.prototype = {
+
+		init: function( name ) {
+
+			this.name = name;
+			this.alive = true;
+			this.__threads = [];
+			this.__paused = [];
+
+		},
 
 		traceThreads: function( async ) {
 
@@ -37,15 +43,7 @@ module.exports = function( spindle ) {
 
 		wait: function( ms ) {
 
-			return spindle.active.block( function( fulfil ) {
-
-				setTimeout( function() {
-
-					fulfil();
-
-				}, ms );
-
-			} );
+			return spindle.api.wait( ms, true );
 
 		},
 
