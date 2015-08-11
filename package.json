@@ -4,18 +4,27 @@
 	"description": "A library providing co-routine support to Javascript with optional translation from synchronous Javascript, with mutexes called executors",
 	"main": "source/spindle.js",
 	"dependencies": {
-		"lodash": "3.0.0"
+		"acorn": "2.0.4",
+		"lodash": "3.0.0",
+		"require-dir": "0.3.0"
+	},
+	"devDependencies": {
+		"chai": "^3.0.0"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/CodeKingdomsTeam/spindle"
 	},
 	"keywords": [
-		"cursor",
-		"query",
-		"chained",
-		"asynchronous",
-		"reactive"
+		"async",
+		"generators",
+		"promises",
+		"mutex",
+		"lock",
+		"threads",
+		"threading",
+		"coroutines",
+		"concurrency"
 	],
 	"author": "Hugh Collins <thehugheth@gmail.com> (http://codekingdoms.com/)",
 	"license": "BSD-2-Clause",
