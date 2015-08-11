@@ -11,6 +11,9 @@ var defineLibrary = function( globalOptions ) {
 		stack: [],
 		waiting: [],
 		api: {},
+		babelOptions: {
+			loose: "all"
+		},
 		console: console,
 		apiRoot: 'spindle.api'
 

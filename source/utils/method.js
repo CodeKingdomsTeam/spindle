@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require( 'lodash' );
+var babel = require( 'babel-core' );
 
 module.exports = function( spindle ) {
 
@@ -61,9 +62,7 @@ module.exports = function( spindle ) {
 
 					// If generators are not supported then use babel to translate them
 					/* global babel: true */
-					output = babel.transform( output, {
-						loose: "all"
-					} );
+					output = babel.transform( output, spindle.babelOptions );
 					output = USE_STRICT + 'return ' + output.code.substring( USE_STRICT.length );
 					compiledFunction = new Function( output )();
 
