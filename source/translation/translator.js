@@ -315,19 +315,19 @@ module.exports = function( spindle ) {
 
 		ArrayExpression: function( node, tabOffset ) {
 
-			if ( node.elements.length ) {
+			var text = '[ ';
+			var elements = [];
 
-				var text = '[ ';
-				for ( var i in node.elements ) {
-					text += walk( node.elements[ i ], tabOffset ) + ', ';
-				}
-				text = text.substring( 0, text.length - 1 ) + ' ]';
+			_.each( node.elements, function( element ) {
 
-				return text;
+				elements.push( walk( element, tabOffset ) );
 
-			} else {
-				return '[]';
-			}
+			} );
+
+			text += elements.join( ", " );
+			text += ' ]';
+
+			return text;
 
 		},
 
@@ -336,19 +336,18 @@ module.exports = function( spindle ) {
 			var text = '{';
 			var properties = [];
 
-			for ( var i in node.properties ) {
-
-				var property = node.properties[ i ];
+			_.each( node.properties, function( property ) {
 
 				var propertyName = property.key.name;
 				if ( propertyName === undefined ) propertyName = property.key.raw;
 
 				properties.push( propertyName + ':' + walk( property.value, tabOffset ) );
-			}
 
+			} );
+
+			text += "\n";
 			text += properties.join( ",\n" + tabOffset );
-
-			text = "\n" + tabOffset + '}';
+			text += "\n" + tabOffset + '}';
 
 			return text;
 

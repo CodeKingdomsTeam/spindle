@@ -65,7 +65,6 @@ describe( 'Javascript translation', function() {
 
 	} );
 
-
 	it( 'Member expression', function() {
 
 		assertFn( function() {
@@ -185,6 +184,42 @@ describe( 'Javascript translation', function() {
 
 				}
 			}
+
+		} );
+
+	} );
+
+	it( 'Simple object', function() {
+
+		assertFn( function() {
+
+			var x = {
+				a: 2,
+				b: 3 < 8,
+				y: 5 + what()
+			};
+
+		}, function*() {
+
+			var x = {
+				a: 2,
+				b: spindle.api.__compare( 3, 8, "<" ),
+				y: ( 5 + ( yield spindle.api.what() ) )
+			};
+
+		} );
+
+	} );
+
+	it( 'Simple array', function() {
+
+		assertFn( function() {
+
+			var x = [ 2, 3 < 8, 5 + what() ];
+
+		}, function*() {
+
+			var x = [ 2, spindle.api.__compare( 3, 8, "<" ), ( 5 + ( yield spindle.api.what() ) ) ];
 
 		} );
 
