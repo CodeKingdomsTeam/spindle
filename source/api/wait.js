@@ -6,7 +6,7 @@ module.exports = function( spindle ) {
 
 	_.extend( spindle.api, {
 
-		wait: function( ms ) {
+		wait: function( ms, blocking ) {
 
 			return spindle.active.wait( function( fulfil ) {
 
@@ -16,7 +16,7 @@ module.exports = function( spindle ) {
 
 				}, ms );
 
-			} );
+			}, blocking );
 
 		},
 
