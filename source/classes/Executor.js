@@ -22,6 +22,12 @@ module.exports = function( spindle ) {
 
 		},
 
+		busy: function() {
+
+			return !!this.__threads.length;
+
+		},
+
 		traceThreads: function( async ) {
 
 			var traces = [];
