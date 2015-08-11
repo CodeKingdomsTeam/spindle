@@ -1,6 +1,6 @@
 {
 	"name": "spindle",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "A library providing co-routine support to Javascript with optional translation from synchronous Javascript, with mutexes called executors",
 	"main": "source/spindle.js",
 	"dependencies": {
