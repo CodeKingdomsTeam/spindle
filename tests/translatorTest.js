@@ -225,6 +225,22 @@ describe( 'Javascript translation', function() {
 
 	} );
 
+	it( 'New constructor', function() {
+
+		assertFn( function() {
+
+			var x = new Magic( 5 );
+			var y = new Magic( 5 ).test();
+
+		}, function*() {
+
+			var x = ( new( yield spindle.api.Magic( 5 ) ) );
+			var y = ( yield( new( yield spindle.api.Magic( 5 ) ) ).test() );
+
+		} );
+
+	} );
+
 } );
 
 describe( 'Threads', function() {
@@ -239,7 +255,6 @@ describe( 'Threads', function() {
 				var x = 2;
 
 			}
-
 
 		}, function*() {
 

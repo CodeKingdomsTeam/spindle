@@ -481,7 +481,11 @@ module.exports = function( spindle ) {
 
 		},
 
-		NewExpression: notImplemented,
+		NewExpression: function( node, tabOffset ) {
+
+			return '(new ' + translationHandlers.CallExpression( node, tabOffset ) + ' )';
+
+		},
 
 		MemberExpression: function( node, tabOffset ) {
 
