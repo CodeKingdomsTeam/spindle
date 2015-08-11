@@ -8,7 +8,7 @@ module.exports = function( spindle ) {
 
 		wait: function( ms, blocking ) {
 
-			return spindle.active.wait( function( fulfil ) {
+			return spindle.currentThread.wait( function( fulfil ) {
 
 				setTimeout( function() {
 
@@ -23,7 +23,7 @@ module.exports = function( spindle ) {
 		waitFor: function( threadOrExecutor, blocking ) {
 
 			var thread = threadOrExecutor;
-			var currentThread = spindle.active;
+			var currentThread = spindle.currentThread;
 
 			if ( threadOrExecutor && threadOrExecutor.__threads ) {
 
@@ -74,7 +74,7 @@ module.exports = function( spindle ) {
 
 		waitOn: function( threadedFunction, blocking ) {
 
-			return spindle.active.wait( function( fulfil, fail ) {
+			return spindle.currentThread.wait( function( fulfil, fail ) {
 
 				threadedFunction.__listeners.push( {
 

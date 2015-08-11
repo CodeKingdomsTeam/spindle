@@ -236,7 +236,7 @@ describe( 'stop', function() {
 
 		spindle.thread( 'main', function*() {
 
-			yield spindle.active.stop();
+			yield spindle.currentThread.stop();
 
 			walk = 1;
 

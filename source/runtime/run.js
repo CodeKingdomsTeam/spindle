@@ -69,7 +69,7 @@ module.exports = function( spindle ) {
 					}
 
 					spindle.stack.push( thread );
-					spindle.active = thread;
+					spindle.currentThread = thread;
 					thread.state = spindle.Thread.STATES.ACTIVE;
 
 					var output;
@@ -89,7 +89,7 @@ module.exports = function( spindle ) {
 					} catch ( e ) {
 
 						spindle.stack.pop();
-						spindle.active.throw( e );
+						spindle.currentThread.throw( e );
 
 						return;
 
@@ -97,7 +97,7 @@ module.exports = function( spindle ) {
 
 					spindle.stack.pop();
 					// TODO ENSURE THIS IS CORRECT
-					spindle.active = _.last( spindle.stack );
+					spindle.currentThread = _.last( spindle.stack );
 
 					// TODO COMMENT
 					if ( output.done ) {
