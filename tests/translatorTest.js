@@ -234,8 +234,8 @@ describe( 'Javascript translation', function() {
 
 		}, function*() {
 
-			var x = ( new( yield spindle.api.Magic( 5 ) ) );
-			var y = ( yield( new( yield spindle.api.Magic( 5 ) ) ).test() );
+			var x = ( new spindle.api.Magic( 5 ) );
+			var y = ( yield( new spindle.api.Magic( 5 ) ).test() );
 
 		} );
 

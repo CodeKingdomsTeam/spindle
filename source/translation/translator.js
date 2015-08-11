@@ -80,8 +80,9 @@ module.exports = function( spindle ) {
 
 			if ( node.alternate ) {
 
-				text += "\n";
+				text += "\n" + tabOffset;
 				text += "} else {";
+				text += "\n";
 				text += "\n";
 				text += walk( node.alternate, tabOffset + "\t" );
 
@@ -483,7 +484,20 @@ module.exports = function( spindle ) {
 
 		NewExpression: function( node, tabOffset ) {
 
-			return '(new ' + translationHandlers.CallExpression( node, tabOffset ) + ' )';
+			var text = '( new ';
+			text += walk( node.callee, tabOffset );
+			text += '( ';
+
+			var parameters = node.arguments.map( function( arg ) {
+
+				return walk( arg, tabOffset );
+
+			} ).join( ', ' );
+
+			text += parameters;
+			text += ' ) )';
+
+			return text;
 
 		},
 

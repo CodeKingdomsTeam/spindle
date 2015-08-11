@@ -55,7 +55,6 @@ module.exports = function( spindle ) {
 				case '<':
 					return left < right;
 				case '>':
-					console.log( left, right );
 					return left > right;
 				case '<=':
 					return left <= right;

@@ -49,6 +49,7 @@ module.exports = function( spindle ) {
 				return thread.run( name, generator, arguments );
 
 			};
+			fn.__generatorFunction = generatorFn;
 			fn.__listeners = [];
 			fn.__schema = {
 				name: name
