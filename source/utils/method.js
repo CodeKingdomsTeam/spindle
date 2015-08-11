@@ -45,7 +45,7 @@ module.exports = function( spindle ) {
 			var namedString = 'function ' + name + string.substring( prefix.length );
 
 			// Use strict for the compiled function
-			var USE_STRICT = "'use strict';\n";
+			var PREAMBLE = "'use strict';\nvar spindle = this;\n";
 
 			var output = spindle.translate( spindle.parse( namedString ) );
 
@@ -54,17 +54,19 @@ module.exports = function( spindle ) {
 
 			try {
 
-				compiledFunction = new Function( USE_STRICT + 'return ' + output )();
+				compiledFunction = new Function( PREAMBLE + 'return ' + output ).call( spindle );
 
 			} catch ( e ) {
+
+				console.log( e.stack );
 
 				try {
 
 					// If generators are not supported then use babel to translate them
 					/* global babel: true */
 					output = babel.transform( output, spindle.babelOptions );
-					output = USE_STRICT + 'return ' + output.code.substring( USE_STRICT.length );
-					compiledFunction = new Function( output )();
+					output = PREAMBLE + 'return ' + output.code.substring( PREAMBLE.length );
+					compiledFunction = new Function( output ).call( spindle );
 
 				} catch ( e2 ) {
 

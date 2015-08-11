@@ -6,43 +6,6 @@ module.exports = function( spindle ) {
 
 	var API_ROOT = spindle.apiRoot;
 
-	var __COMPARISON_OPERATORS = {
-
-		'==': function( result ) {
-
-			return result === 0;
-		},
-
-		'!=': function( result ) {
-
-			return result !== 0;
-		},
-
-		'<': function( result ) {
-
-			return result === -1;
-		},
-
-		'>': function( result ) {
-
-			return result === 1;
-		},
-
-		'<=': function( result ) {
-
-			return result === 0 || result === -1;
-		},
-
-		'>=': function( result ) {
-
-			return result === 0 || result === 1;
-		}
-
-	};
-
-	__COMPARISON_OPERATORS[ '===' ] = __COMPARISON_OPERATORS[ '==' ];
-	__COMPARISON_OPERATORS[ '!==' ] = __COMPARISON_OPERATORS[ '!=' ];
-
 	var notImplemented = function( node ) {
 		spindle.console.warn( "Not yet implemented for node", node );
 		return '';
@@ -294,7 +257,7 @@ module.exports = function( spindle ) {
 
 			var text = '';
 
-			text += 'spindle.spindle.thread("' + node.id.name + '", ';
+			text += 'spindle.thread("' + node.id.name + '", ';
 			text += 'function*(';
 
 			if ( node.params.length ) {
@@ -497,7 +460,7 @@ module.exports = function( spindle ) {
 		BinaryExpression: function( node, tabOffset ) {
 
 			// If this is a comparison try for a rich comparison (which will fall back to an ordinary comparison otherwise)
-			if ( __COMPARISON_OPERATORS[ node.operator ] ) {
+			if ( spindle.api.__compare.OPERATORS[ node.operator ] ) {
 
 				return API_ROOT + '.__compare(' + walk( node.left, tabOffset ) + ', ' + walk( node.right, tabOffset ) + ', "' + node.operator + '")';
 
