@@ -370,7 +370,7 @@ module.exports = function( spindle ) {
 			} );
 
 			var text = '';
-			text += 'spindle.spindle.thread("function", ';
+			text += 'spindle.thread("function", ';
 			text += 'function*( ';
 
 			var parameters = node.params.map( function( param ) {

@@ -9,7 +9,7 @@ var assertFn = function( fn, expected ) {
 	var output = spindle.translate( spindle.parse( "function my_" + fn.toString() ) );
 
 	var stringA = output.replace( /[\s]/g, '' );
-	var stringB = 'spindle.spindle.thread("my_function",' + expected.toString().replace( /[\s]/g, '' ) + ');';
+	var stringB = 'spindle.thread("my_function",' + expected.toString().replace( /[\s]/g, '' ) + ');';
 
 	if ( stringA !== stringB ) {
 
@@ -208,7 +208,7 @@ describe( 'Threads', function() {
 
 		}, function*() {
 
-			spindle.spindle.thread( "onPress", function*() {
+			spindle.thread( "onPress", function*() {
 
 				var x = 2;
 
@@ -233,7 +233,7 @@ describe( 'Threads', function() {
 
 		}, function*() {
 
-			var onPress = spindle.spindle.thread( "function", function*() {
+			var onPress = spindle.thread( "function", function*() {
 
 				var x = 2;
 
@@ -258,7 +258,7 @@ describe( 'Threads', function() {
 
 		}, function*() {
 
-			var onPress = spindle.spindle.thread( "function", function*( a, b, c ) {
+			var onPress = spindle.thread( "function", function*( a, b, c ) {
 
 				return ( ( a + b ) + c );
 
@@ -357,7 +357,7 @@ describe( 'Global api mappings', function() {
 			yield x( 5 );
 			( spindle.api.y = 3 );
 
-			spindle.spindle.thread( "test", function*( y ) {
+			spindle.thread( "test", function*( y ) {
 
 				( y = 2 );
 				return ( ( x + y ) + spindle.api.z );
@@ -411,11 +411,11 @@ describe( 'Global api mappings', function() {
 			yield x( 5 );
 			( spindle.api.y = 3 );
 
-			var test = spindle.spindle.thread( "function", function*( y ) {
+			var test = spindle.thread( "function", function*( y ) {
 
 				( y = 2 );
 
-				var test2 = spindle.spindle.thread( "function", function*( z ) {
+				var test2 = spindle.thread( "function", function*( z ) {
 
 					return ( y + z );
 
@@ -423,7 +423,7 @@ describe( 'Global api mappings', function() {
 
 				( spindle.api.z = 4 );
 
-				var test3 = spindle.spindle.thread( "function", function*( z ) {
+				var test3 = spindle.thread( "function", function*( z ) {
 
 					return ( x + spindle.api.a );
 
