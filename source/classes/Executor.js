@@ -24,7 +24,7 @@ module.exports = function( spindle ) {
 
 		busy: function() {
 
-			return !!this.__threads.length;
+			return !!this.__threads.length || this.__thread;
 
 		},
 
