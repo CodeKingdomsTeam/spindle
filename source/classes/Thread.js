@@ -10,7 +10,7 @@ module.exports = function( spindle ) {
 		this.name = name;
 		this.owner = owner;
 		this.parent = parent;
-		this.status = spindle.Thread.STATES.READY;
+		this.state = spindle.Thread.STATES.READY;
 		this.stack = [];
 
 		var t = this;
