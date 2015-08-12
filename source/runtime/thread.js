@@ -30,14 +30,14 @@ module.exports = function( spindle ) {
 				if ( !parent || parent.owner !== this ) {
 
 					thread = new spindle.Thread( name, this, parent );
+					thread.method = fn;
 					thread.promise.then( function( result ) {
 
 						spindle.fire( fn, result, false );
 
-					}, function( error ) {
+					}, function() {
 
-						// TODO threads: handle errors correctly
-						spindle.console.warn( 'Thread Error [', thread.trace(), ']', error );
+						// TODO: Handle thread error
 
 					} );
 					thread.start( name, generator, arguments );
