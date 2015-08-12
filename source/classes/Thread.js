@@ -191,9 +191,6 @@ module.exports = function( spindle ) {
 
 			return spindle.promise( 'wait', function( fulfil, fail ) {
 
-				t._waitFulfil = fulfil;
-				t._waitFail = fail;
-
 				t.state = spindle.Thread.STATES.WAITING;
 				spindle.waiting.push( t );
 
@@ -226,7 +223,7 @@ module.exports = function( spindle ) {
 
 				}
 
-				run( function( result ) {
+				t._waitFulfil = function( result ) {
 
 					// Check if the thread has stopped
 					if ( t.state === spindle.Thread.STATES.STOPPED ) {
@@ -244,7 +241,9 @@ module.exports = function( spindle ) {
 					t._wake();
 					fulfil( result );
 
-				}, function( error ) {
+				};
+
+				t._waitFail = function( error ) {
 
 					// Check if the thread has stopped
 					if ( t.state === spindle.Thread.STATES.STOPPED ) {
@@ -262,7 +261,9 @@ module.exports = function( spindle ) {
 					t._wake();
 					fail( error );
 
-				} );
+				};
+
+				run( t._waitFulfil, t._waitFail );
 
 			} );
 

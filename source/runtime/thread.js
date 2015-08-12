@@ -35,9 +35,10 @@ module.exports = function( spindle ) {
 
 						spindle.fire( fn, result, false );
 
-					}, function() {
+					}, function( e ) {
 
 						// TODO: Handle thread error
+						// console.log( e.stack );
 
 					} );
 					thread.start( name, generator, arguments );

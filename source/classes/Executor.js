@@ -119,7 +119,7 @@ module.exports = function( spindle ) {
 
 			}
 
-			_.each( this.__threads, function( thread ) {
+			_.each( _.extend( [], this.__threads ), function( thread ) {
 
 				thread.stop();
 

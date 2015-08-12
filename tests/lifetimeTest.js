@@ -222,6 +222,7 @@ describe( 'stop', function() {
 
 			yield spindle.api.wait();
 
+			assert.equal( toby.busy(), false );
 			assert.equal( walk, 0 );
 			done();
 
