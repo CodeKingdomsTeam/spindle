@@ -24,7 +24,25 @@ module.exports = function( spindle ) {
 
 		busy: function() {
 
-			return !!this.__threads.length || this.__thread;
+			return !!this.getCurrentThread();
+
+		},
+
+		getCurrentThread: function() {
+
+			return this.__thread || this.__threads[ 0 ];
+
+		},
+
+		isExecutingMethod: function( method ) {
+
+			var activeThread = this.getCurrentThread();
+
+			if ( !activeThread ) return false;
+
+			method = method || spindle.currentThread.method;
+
+			return method === activeThread.method;
 
 		},
 
@@ -94,6 +112,12 @@ module.exports = function( spindle ) {
 		},
 
 		stop: function() {
+
+			if ( this.__thread ) {
+
+				this.__thread.stop();
+
+			}
 
 			_.each( this.__threads, function( thread ) {
 
