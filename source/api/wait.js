@@ -25,6 +25,8 @@ module.exports = function( spindle ) {
 			var thread = threadOrExecutor;
 			var currentThread = spindle.currentThread;
 
+			if ( !currentThread ) return;
+
 			if ( threadOrExecutor && threadOrExecutor.__threads ) {
 
 				var executor = threadOrExecutor;
