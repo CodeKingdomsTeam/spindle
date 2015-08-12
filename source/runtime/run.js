@@ -72,31 +72,15 @@ module.exports = function( spindle ) {
 					spindle.currentThread = thread;
 					thread.state = spindle.Thread.STATES.ACTIVE;
 
-					var output;
+					var output = spindle._next( generator, result, isError );
 
-					try {
-
-						if ( isError ) {
-
-							output = generator.throw( result );
-
-						} else {
-
-							output = generator.next( result );
-
-						}
-
-					} catch ( e ) {
-
-						spindle.stack.pop();
-						spindle.currentThread.throw( e );
+					if ( !output ) {
 
 						return;
 
 					}
 
 					spindle.stack.pop();
-					// TODO ENSURE THIS IS CORRECT
 					spindle.currentThread = _.last( spindle.stack );
 
 					// TODO COMMENT
@@ -127,6 +111,30 @@ module.exports = function( spindle ) {
 				process();
 
 			} );
+
+		},
+
+		_next: function( generator, result, isError ) {
+
+			try {
+
+				if ( isError ) {
+
+					return generator.throw( result );
+
+				} else {
+
+					return generator.next( result );
+
+				}
+
+			} catch ( e ) {
+
+				spindle.stack.pop();
+				spindle.currentThread.throw( e );
+				return;
+
+			}
 
 		}
 
