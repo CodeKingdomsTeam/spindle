@@ -7,7 +7,7 @@ var defineLibrary = function( globalOptions ) {
 	var spindle = _.defaults( globalOptions || {}, {
 
 		stack: [],
-		waiting: [],
+		waiting: {},
 		api: {},
 		babelOptions: {
 			loose: "all"

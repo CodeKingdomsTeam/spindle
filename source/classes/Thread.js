@@ -155,7 +155,7 @@ module.exports = function( spindle ) {
 
 			if ( this.state === spindle.Thread.STATES.WAITING ) {
 
-				spindle.waiting.splice( spindle.waiting.indexOf( this ), 1 );
+				delete spindle.waiting[ this.id ];
 				this._wake();
 
 			}
@@ -199,7 +199,7 @@ module.exports = function( spindle ) {
 			return spindle.promise( 'wait', function( fulfil, fail ) {
 
 				t.state = spindle.Thread.STATES.WAITING;
-				spindle.waiting.push( t );
+				spindle.waiting[ this.id ] = this;
 
 				// Add queue waiting on the executor
 				if ( blocking ) {
@@ -241,7 +241,7 @@ module.exports = function( spindle ) {
 
 					if ( blocking ) {
 
-						spindle.waiting.splice( spindle.waiting.indexOf( t ), 1 );
+						delete spindle.waiting[ this.id ];
 
 					}
 
@@ -261,7 +261,7 @@ module.exports = function( spindle ) {
 
 					if ( blocking ) {
 
-						spindle.waiting.splice( spindle.waiting.indexOf( t ), 1 );
+						delete spindle.waiting[ this.id ];
 
 					}
 

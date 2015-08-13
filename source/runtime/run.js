@@ -44,7 +44,7 @@ module.exports = function( spindle ) {
 
 			thread = thread || new spindle.Thread( 'main' );
 
-			return spindle.promise( thread.trace(), function( fulfil, fail ) {
+			return spindle.promise( thread.name, function( fulfil, fail ) {
 
 				var process = function( result, isError ) {
 
