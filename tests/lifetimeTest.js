@@ -219,7 +219,6 @@ describe( 'stop', function() {
 			yield toby.walk( 2 );
 
 			yield toby.stop();
-
 			yield spindle.api.wait();
 
 			assert.equal( toby.busy(), false );

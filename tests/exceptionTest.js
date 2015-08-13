@@ -87,7 +87,7 @@ describe( 'Exception handling', function() {
 	} );
 
 
-	it( 'You can catch interrupted exception if you are stopped', function( done ) {
+	it( 'You cannot catch interrupted exception if you are stopped', function( done ) {
 
 		var walk = 0;
 
@@ -120,7 +120,7 @@ describe( 'Exception handling', function() {
 
 			yield spindle.api.waitFor( thread );
 
-			assert.equal( walk, 1 );
+			assert.equal( walk, 0 );
 			done();
 
 		} )();

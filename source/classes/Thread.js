@@ -153,7 +153,14 @@ module.exports = function( spindle ) {
 
 		stop: function() {
 
-			this.throw( new Error( 'InterruptedException' ) );
+			if ( this.state === spindle.Thread.STATES.WAITING ) {
+
+				spindle.waiting.splice( spindle.waiting.indexOf( this ), 1 );
+				this._wake();
+
+			}
+
+			this._terminate( new Error( 'InterruptedException' ) );
 
 		},
 
