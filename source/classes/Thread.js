@@ -6,7 +6,7 @@ module.exports = function( spindle ) {
 
 	spindle.Thread = function( name, owner, parent ) {
 
-		this.uid = spindle.Thread.uid++;
+		this.id = spindle.Thread.uid++;
 		this.name = name;
 		this.owner = owner;
 		this.parent = parent;
