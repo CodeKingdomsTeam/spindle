@@ -199,7 +199,7 @@ module.exports = function( spindle ) {
 			return spindle.promise( 'wait', function( fulfil, fail ) {
 
 				t.state = spindle.Thread.STATES.WAITING;
-				spindle.waiting[ this.id ] = this;
+				spindle.waiting[ t.id ] = t;
 
 				// Add queue waiting on the executor
 				if ( blocking ) {
@@ -241,7 +241,7 @@ module.exports = function( spindle ) {
 
 					if ( blocking ) {
 
-						delete spindle.waiting[ this.id ];
+						delete spindle.waiting[ t.id ];
 
 					}
 
@@ -261,7 +261,7 @@ module.exports = function( spindle ) {
 
 					if ( blocking ) {
 
-						delete spindle.waiting[ this.id ];
+						delete spindle.waiting[ t.id ];
 
 					}
 
