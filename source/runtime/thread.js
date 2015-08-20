@@ -37,8 +37,9 @@ module.exports = function( spindle ) {
 
 					}, function( e ) {
 
-						// TODO: Handle thread error
-						// console.log( e.stack );
+						if ( e.message === 'InterruptedException' ) return;
+
+						spindle.console.warn( e.stack );
 
 					} );
 					thread.start( name, generator, arguments );
