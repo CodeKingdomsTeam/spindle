@@ -326,7 +326,7 @@ module.exports = function( spindle ) {
 
 			return _.map( [].slice.call( args ), function( arg ) {
 
-				if ( typeof arg === 'object' ) {
+				if ( typeof arg === 'object' && arg ) {
 
 					return arg.__schema ? arg.__schema.name : 'object';
 
