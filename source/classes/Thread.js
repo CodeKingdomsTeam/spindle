@@ -222,7 +222,7 @@ module.exports = function( spindle ) {
 
 						t.owner.__threads.unshift( t );
 
-					} else {
+					} else if ( t.owner.__threads ) {
 
 						t.owner.__threads.push( t );
 

@@ -39,7 +39,7 @@ module.exports = function( spindle ) {
 
 						if ( e.message === 'InterruptedException' ) return;
 
-						spindle.console.warn( e.stack );
+						spindle.console.warn( generatorFn, e.stack );
 
 					} );
 					thread.start( name, generator, arguments );
